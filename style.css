@@ -1,6 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap");
 
+/* --- NEW: Theme Colors & Variables --- */
+:root {
+  --primary-color: #00A99D; /* Main Teal Color */
+  --dark-bg: #1A202C;       /* Dark background for Hero/Footer */
+  --light-bg: #F8F9FA;      /* Light gray for section backgrounds */
+  --card-bg: #FFFFFF;       /* White for cards */
+  --dark-text: #212529;      /* Dark text color */
+  --light-text: #FFFFFF;     /* Light text color */
+  --secondary-text: #6c757d;/* Muted text color */
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  --border-radius: 0.8rem;
+}
+
 /* --- Global Styles & Resets --- */
 * {
   margin: 0;
@@ -20,13 +33,13 @@ html {
 }
 
 body {
-  background: #f7f7f7;
+  background: var(--light-bg);
   font-family: "Poppins", sans-serif;
 }
 
 *::selection {
-  background: #2b3dda;
-  color: #fff;
+  background: var(--primary-color);
+  color: var(--light-text);
 }
 
 html::-webkit-scrollbar {
@@ -34,6 +47,417 @@ html::-webkit-scrollbar {
 }
 
 html::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 1rem;
+}
+
+section {
+  min-height: 100vh;
+  padding: 4rem 9%;
+}
+
+.heading {
+  font-size: 3.5rem;
+  color: var(--dark-text);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.heading span {
+  color: var(--primary-color);
+}
+
+/* --- Universal Button Style --- */
+.btn {
+  display: inline-block;
+  padding: 1.2rem 3rem;
+  border-radius: var(--border-radius);
+  background: var(--primary-color);
+  color: var(--light-text);
+  font-size: 1.7rem;
+  font-weight: 600;
+  font-family: "Nunito", sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 169, 157, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 169, 157, 0.6);
+}
+
+.btn i {
+    margin-left: 0.5rem;
+}
+
+/* --- Header & Navbar --- */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 10%;
+  height: 7rem;
+  background-color: var(--card-bg);
+  box-shadow: var(--card-shadow);
+}
+
+header .logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--dark-text);
+}
+
+header .logo:hover {
+  color: var(--primary-color);
+}
+
+header .navbar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+header .navbar li {
+  margin-left: 3rem;
+}
+
+header .navbar ul li a {
+  font-size: 1.6rem;
+  color: var(--dark-text);
+  font-weight: 600;
+}
+
+header .navbar ul li a.active,
+header .navbar ul li a:hover {
+  color: var(--primary-color);
+}
+
+/* Add a class for the contact button if you have one */
+header .navbar .contact-btn {
+    padding: 1rem 2.5rem;
+    border-radius: 5rem; /* Pill shape */
+}
+
+
+/* --- Hamburger Menu for Mobile --- */
+#menu {
+  font-size: 3rem;
+  cursor: pointer;
+  color: var(--dark-text);
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #menu {
+    display: block;
+  }
+  header .navbar {
+    position: fixed;
+    top: 7rem;
+    right: -120%;
+    width: 75%;
+    height: 100%;
+    background-color: var(--dark-bg);
+    transition: right 0.3s ease-in-out;
+  }
+  header .navbar.nav-toggle {
+    right: 0;
+  }
+  header .navbar ul {
+    flex-flow: column;
+    padding: 2rem;
+  }
+  header .navbar ul li {
+    width: 100%;
+    margin: 1.5rem 0;
+  }
+  header .navbar ul li a {
+    display: block;
+    color: var(--light-text);
+    font-size: 2rem;
+  }
+  header .navbar ul li a.active,
+  header .navbar ul li a:hover {
+    color: var(--primary-color);
+  }
+}
+
+/* --- Home Section --- */
+.home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  min-height: 100vh;
+  align-items: center;
+  background: var(--dark-bg);
+  color: var(--light-text);
+  padding-top: 7rem; /* Adjust for header height */
+}
+
+.home #particles-js {
+  position: absolute;
+  top: 0; left: 0; height: 100%; width: 100%;
+}
+
+.home .content {
+  flex: 1 1 40rem;
+  padding-top: 1rem;
+  z-index: 1;
+  text-align: center; /* Center aligning for the new look */
+}
+
+.home .image {
+  flex: 1 1 40rem;
+  z-index: 1;
+  text-align: center;
+}
+
+.home .image img {
+  width: 70%;
+  border-radius: 50%;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.home .content h2 {
+  font-size: 5rem;
+  font-weight: 700;
+  color: var(--light-text);
+}
+
+.home .content p {
+  font-size: 2rem;
+  color: var(--light-text);
+  font-weight: 400;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+/* Socials section remains largely the same, but colors can be updated */
+.socials {
+  position: relative;
+  margin-top: 4rem;
+}
+.social-icons a {
+  font-size: 2rem;
+  color: var(--light-text);
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  margin-right: 8px;
+  border-radius: 100%;
+}
+.social-icons a:hover {
+  color: var(--light-text);
+  background-color: var(--primary-color);
+}
+
+/* --- About Section --- */
+.about {
+  background: var(--light-bg);
+}
+
+.about .row {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap;
+  padding: 4rem;
+  align-items: center;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+}
+
+.about .row .image {
+  text-align: center;
+  flex: 1 1 35rem;
+}
+
+.about .row .image img {
+  width: 30rem;
+  height: auto;
+  border-radius: var(--border-radius);
+  box-shadow: none; /* Shadow is now on the parent card */
+}
+
+.about .row .content {
+  flex: 1 1 45rem;
+}
+
+.about .row .content h3 {
+  color: var(--dark-text);
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.about .row .content .tag {
+  font-size: 1.4rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.about .row .content p {
+  font-size: 1.6rem;
+  margin-top: 1.5rem;
+  font-family: "Nunito";
+  font-weight: 400;
+  color: var(--secondary-text);
+  text-transform: none;
+  line-height: 1.7;
+}
+
+.about .row .content .resumebtn {
+    margin-top: 3rem;
+}
+
+/* --- Skills Section --- */
+.skills {
+  background: var(--light-bg);
+}
+
+.skills .container {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 4rem;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: var(--card-shadow);
+}
+
+.skills .container .row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+}
+
+.skills .container .bar {
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  background: var(--light-bg);
+  transition: 0.2s;
+  text-align: center;
+}
+
+.skills .container .bar:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-shadow);
+}
+
+.skills .container .bar .info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skills .container .bar .info img {
+  height: 5rem;
+}
+
+.skills .container .bar .info span {
+  font-size: 1.8rem;
+  font-weight: 600;
+  font-family: "Poppins";
+  color: var(--dark-text);
+}
+
+
+/* --- Other sections would follow the same pattern of light-bg with white cards --- */
+/* For example, Education Section */
+
+.education {
+  background: var(--light-bg);
+}
+
+.education .box-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.education .box-container .box {
+  display: flex;
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  background: var(--card-bg);
+}
+/* ... rest of the education styles can be adjusted similarly ... */
+
+
+/* --- Footer --- */
+.footer {
+  min-height: auto;
+  padding: 4rem 9%;
+  background: var(--dark-bg);
+  color: var(--light-text);
+}
+
+.footer .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.footer .box-container .box h3 {
+  font-size: 2.2rem;
+  color: var(--light-text);
+  padding-bottom: 1rem;
+}
+
+.footer .box-container .box p {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.7rem 0;
+  text-transform: none;
+}
+
+.footer .box-container .box p i {
+  padding-right: 1rem;
+  color: var(--primary-color);
+}
+
+.footer .box-container .box a {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 0.3rem 0;
+  display: block;
+}
+
+.footer .box-container .box a:hover {
+  color: var(--primary-color);
+}
+
+.footer .credit {
+  padding: 2.5rem 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: "Nunito", sans-serif;
+  color: var(--light-text);
+  border-top: 0.1rem solid rgba(255, 255, 255, 0.2);
+}
+
+.footer .credit a {
+  color: var(--primary-color);
+}
+
+/* --- You would continue this pattern for Work, Experience, Contact etc. --- */
+/* --- The above code provides the main theme transformation. --- */
   background: rgb(235, 202, 245);
 }
 
@@ -1034,3 +1458,4 @@ form .button-area {
   }
 
 }
+
